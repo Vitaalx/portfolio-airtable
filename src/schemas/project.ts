@@ -42,9 +42,9 @@ const fieldsSchema = z.object({
 });
 
 export const projectSchema = z.object({
-	records: z.array(z.object({
-		id: z.string(),
-		createdTime: z.string().datetime(),
-		fields: fieldsSchema,
-	})),
+	id: z.string(),
+	createdTime: z.string().datetime(),
+	fields: fieldsSchema,
 });
+
+export type Project = z.infer<typeof projectSchema>;
