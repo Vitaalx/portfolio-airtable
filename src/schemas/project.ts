@@ -17,13 +17,10 @@ const projectMediaItemSchema = z.object({
 	width: z.number().positive(),
 	height: z.number().positive(),
 	url: z.string().url(),
-	filename: z.string(),
-	size: z.number().positive(),
-	type: z.string(),
 	thumbnails: thumbnailsSchema,
 });
 
-const fieldsSchema = z.object({
+export const projectFieldsSchema = {
 	title: z.string(),
 	description: z.string(),
 	status: z.string(),
@@ -39,12 +36,7 @@ const fieldsSchema = z.object({
 	keywords: z.object({
 		value: z.string(),
 	}),
-});
+};
 
-export const projectSchema = z.object({
-	id: z.string(),
-	createdTime: z.string().datetime(),
-	fields: fieldsSchema,
-});
+export type Project = z.infer<z.ZodObject<typeof projectFieldsSchema>>;
 
-export type Project = z.infer<typeof projectSchema>;

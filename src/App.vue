@@ -1,38 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import TheButton from "./components/ui/button/TheButton.vue";
-import { projectSchema } from "@/schemas/project";
-import { useGetFetchAirtable } from "./composables/useGetFetchAirtable";
-
-const {
-	fetchedData,
-	getData,
-} = useGetFetchAirtable("Project", projectSchema.array());
-
-async function click() {
-	await getData();
-	console.log(fetchedData.value);
-}
+import TheLoader from "./components/TheLoader.vue";
 </script>
 
 <template>
-  <div>
-    <h1 class="text-red-500">
-      Portfolio created with Airtable.
-    </h1>
+  <TheLoader />
 
-    <div
-      v-for="(project, index) in fetchedData"
-      :key="index"
-    >
-      <p>{{ project.fields.description }}</p>
-    </div>
-
-    <TheButton @click="click">
-      Click me!
-    </TheButton>
-  </div>
   <RouterView />
 </template>
-
-<style scoped></style>
