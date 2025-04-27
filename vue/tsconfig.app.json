@@ -21,5 +21,5 @@
 		"src/**/*.tsx",
 		"src/**/*.vue",
 		"*.d.ts"
-	]
+, "vue/vite-vue.d.ts"	]
 }

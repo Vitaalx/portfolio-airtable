@@ -1,0 +1,21 @@
+{
+  "name": "@portfolio-airtable/duplo",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx --watch src/main.ts"
+  },
+  "license": "ISC",
+  "description": "Ceci est le back du projet portfolio afin de sécuriser la partie administrative de l'application du portfolio.",
+  "dependencies": {
+    "@duplojs/core": "^1.0.3",
+    "@duplojs/node": "^1.0.1",
+    "dotenv": "16.4.5",
+    "dotenv-expand": "12.0.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}

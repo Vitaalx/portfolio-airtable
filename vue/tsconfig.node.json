@@ -23,5 +23,5 @@
 	"baseUrl": "./",
 	"paths": {}
   },
-  "include": ["vite.config.ts", "eslint.config.ts"]
+  "include": ["vue/vite.config.ts", "vue/eslint.config.ts"]
 }
