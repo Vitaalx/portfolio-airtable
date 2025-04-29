@@ -21,7 +21,8 @@
     "noUncheckedSideEffectImports": true,
 	
 	"baseUrl": "./",
-	"paths": {}
+	"paths": {
+	}
   },
-  "include": ["vue/vite.config.ts", "vue/eslint.config.ts"]
+  "include": ["vite.config.ts", "eslint.config.js"]
 }

@@ -12,7 +12,11 @@ export const envs = zod
 	.object({
 		PORT: zod.coerce.number(),
 		HOST: zod.enum(["0.0.0.0"]),
-		ENVIROMENT: zod.enum(["DEV", "PROD"]),
+		ENVIRONMENT: zod.enum(["DEV", "PROD"]),
+		AIRTABLE_BASE_URL: zod.string().url(),
+		AIRTABLE_API_KEY: zod.string(),
+		JWT_KEY: zod.string(),
+		JWT_TIME: zod.coerce.number(),
 		CORS_ALLOW_ORIGIN: zod.string(),
 	})
 	.parse(process.env);

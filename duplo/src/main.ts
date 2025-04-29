@@ -4,9 +4,9 @@ import { envs } from "./envs";
 import "./routes";
 
 const duplo = new Duplo({
-    environment: envs.ENVIROMENT,
-    host: envs.HOST,
-    port: envs.PORT,
+	environment: envs.ENVIRONMENT,
+	host: envs.HOST,
+	port: envs.PORT,
 });
 
 const { host, port } = duplo.config;
@@ -19,5 +19,5 @@ duplo.register(
 await duplo
 	.launch()
 	.then(
-		() => console.log(`Duplo is running on http://${host}:${port}`),
+		() => void console.log(`Duplo is running on http://${host}:${port}`),
 	);

@@ -5,9 +5,13 @@
   "private": true,
   "workspaces": [
     "./vue",
-    "./duplo"
+    "./duplo",
+    "./libs/client-types"
   ],
-  "scripts": {},
+  "scripts": {
+    "dev:vue": "npm -w @portfolio-airtable/vue run dev",
+    "dev:duplo": "npm -w @portfolio-airtable/duplo run dev"
+  },
   "author": {
     "name": "Vitaalx",
     "email": "liamdu92@gmail.com",

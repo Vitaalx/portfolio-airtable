@@ -51,34 +51,37 @@ function handleSearch() {
 
 </script>
 <template>
-  <section class="min-h-screen">
-    <div class="flex flex-row justify-between items-center p-4">
-      <h1 class="text-center text-3xl font-bold">
-        Projets publiés ({{ projects.length }})
-      </h1>
-      <input
-        class="border border-gray-300 w-100 rounded p-2"
-        ref="inputRef"
-        type="text"
-        placeholder="Rechercher un projet..."
-        @input="handleSearch"
-      >
-    </div>
-    <template v-if="!isLoading">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        <ProjectCard
-          v-for="project in projects"
-          :key="project.id"
-          :project="project"
-          class="mb-4"
-          @on-liked="getProjects"
-        />
-      </div>
-    </template>
-    <template v-if="!isLoading && projects.length === 0">
-      <p class="text-center text-lg">
-        Aucun projet trouvé.
-      </p>
-    </template>
-  </section>
+	<section class="min-h-screen">
+		<div class="flex flex-row justify-between items-center p-4">
+			<h1 class="text-center text-3xl font-bold">
+				Projets publiés ({{ projects.length }})
+			</h1>
+
+			<input
+				class="border border-gray-300 w-100 rounded p-2"
+				ref="inputRef"
+				type="text"
+				placeholder="Rechercher un projet..."
+				@input="handleSearch"
+			>
+		</div>
+
+		<template v-if="!isLoading">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+				<ProjectCard
+					v-for="project in projects"
+					:key="project.id"
+					:project="project"
+					class="mb-4"
+					@on-liked="getProjects"
+				/>
+			</div>
+		</template>
+
+		<template v-if="!isLoading && projects.length === 0">
+			<p class="text-center text-lg">
+				Aucun projet trouvé.
+			</p>
+		</template>
+	</section>
 </template>

@@ -23,6 +23,14 @@
             Projets
           </router-link>
         </li>
+        <li>
+          <router-link
+            to="/admin-panel"
+            class="text-gray-700 hover:text-blue-500"
+          >
+            Admin
+          </router-link>
+        </li>
       </ul>
     </nav>
   </header>
