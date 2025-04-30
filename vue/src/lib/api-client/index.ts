@@ -10,7 +10,7 @@ export type PortfolioAPIClientRoute = TransformCodegenRouteToHttpClientRoute<
 const { accessToken } = useUserAdminInformation();
 
 export const portfolioApiClient = new HttpClient<PortfolioAPIClientRoute>({
-	baseUrl: envs.VITE_AIRTABLE_BASE_URL,
+	baseUrl: envs.VITE_API_BASE_URL,
 })
 	.setDefaultRequestParams({
 		mode: "cors",

@@ -5,16 +5,16 @@ import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-	plugins: [
-		vue(),
-		tailwindcss(),
-		tsconfigPaths(),
-	],
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
 		},
 	},
+	plugins: [
+		vue(),
+		tailwindcss(),
+		tsconfigPaths(),
+	],
 	server: {
 		host: "0.0.0.0",
 		port: 3000,

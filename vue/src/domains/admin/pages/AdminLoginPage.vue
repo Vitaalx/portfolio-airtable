@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import LoginForm from "../components/LoginForm.vue";
+import LoginForm from "@/domains/admin/components/LoginForm.vue";
+
 </script>
 <template>
-	<div class="flex h-screen w-full items-center justify-center px-4">
-		<LoginForm />
-	</div>
+	<section
+		class="flex h-screen w-full justify-center px-4"
+	>
+		<div>
+			<LoginForm />
+		</div>
+	</section>
 </template>

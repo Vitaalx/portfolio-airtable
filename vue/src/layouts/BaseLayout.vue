@@ -3,11 +3,11 @@ import TheHeader from "@/components/TheHeader.vue";
 import TheFooter from "@/components/TheFooter.vue";
 </script>
 <template>
-  <TheHeader />
+	<TheHeader />
 
-  <main class="container mx-auto mt-16 p-4">
-    <RouterView />
-  </main>
+	<main class="container mx-auto mt-16 p-4">
+		<RouterView />
+	</main>
 
-  <TheFooter />
+	<TheFooter />
 </template>

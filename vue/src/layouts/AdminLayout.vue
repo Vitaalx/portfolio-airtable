@@ -4,11 +4,11 @@ import AdminHeader from "@/domains/admin/components/AdminHeader.vue";
 
 </script>
 <template>
-  <AdminHeader />
+	<AdminHeader />
 
-  <main class="mt-24 bg-gray-100 min-h-screen-nh">
-    <RouterView />
-  </main>
+	<main class="container mx-auto mt-16 p-4">
+		<RouterView />
+	</main>
 
-  <AdminFooter />
+	<AdminFooter />
 </template>
