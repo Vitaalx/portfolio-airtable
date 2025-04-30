@@ -6,7 +6,7 @@ import TheLink from "@/components/TheLink.vue";
 import TheButton from "@/components/ui/button/TheButton.vue";
 import { useRouter } from "vue-router";
 
-const { ADMIN_PROJECTS_PAGE, ADMIN_LOGIN_PAGE } = routerPageNameAdmin;
+const { ADMIN_PROJECTS_PAGE, ADMIN_LOGIN_PAGE, ADMIN_PROJECT_STATS_PAGE } = routerPageNameAdmin;
 const { HOME_PAGE } = routerPageNameMain;
 const { isConnected, deleteAccessToken } = useUserAdminInformation();
 const router = useRouter();
@@ -25,38 +25,45 @@ async function handleLogout() {
 				label="Admin Panel"
 			/>
 
-			<div class="flex gap-6 items-center">
+			<div class="flex items-center gap-2">
 				<TheLink
 					:to="HOME_PAGE"
 					label="Accueil"
 				/>
 
 				<div
-					v-if="!isConnected"
-				>
-					<TheLink
-						:to="ADMIN_LOGIN_PAGE"
-						label="Login"
-					/>
-				</div>
-
-				<div
-					v-else
-					class="flex items-center justify-between w-[200px]"
+					class="flex items-center gap-2"
+					v-if="isConnected"
 				>
 					<TheLink
 						:to="ADMIN_PROJECTS_PAGE"
 						label="Projets"
 					/>
 
-					<TheButton
-						type="submit"
-						class="bg-black hover:bg-gray-800 transition-all text-white font-semibold py-2 rounded-xl shadow-md"
-						@click="handleLogout()"
-					>
-						Se déconnecter
-					</TheButton>
+					<TheLink
+						:to="ADMIN_PROJECT_STATS_PAGE"
+						label="Statistiques"
+					/>
 				</div>
+			</div>
+
+			<div
+				class="flex items-center gap-2 w-[150px] justify-end"
+			>
+				<TheLink
+					v-if="!isConnected"
+					:to="ADMIN_LOGIN_PAGE"
+					label="Login"
+				/>
+
+				<TheButton
+					v-else
+					type="submit"
+					class="bg-black hover:bg-gray-800 transition-all text-white font-semibold py-2 rounded-xl shadow-md"
+					@click="handleLogout()"
+				>
+					Se déconnecter
+				</TheButton>
 			</div>
 		</nav>
 	</header>
