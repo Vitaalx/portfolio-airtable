@@ -39,76 +39,72 @@ const onSubmit = form.handleSubmit(
 </script>
 
 <template>
-	<form
-		class="w-[500px] bg-white px-10 py-8 rounded-3xl shadow-lg space-y-8"
-		@submit.prevent="onSubmit"
-	>
-		<h2 class="text-2xl font-bold text-center text-gray-800">
-			Connexion
-		</h2>
-
-		<FormField
-			v-slot="{ value, setValue }"
-			name="email"
+	<div class="min-h-screen flex items-center justify-center relative overflow-hidden">
+		<form
+			class="relative z-10 w-full max-w-md backdrop-blur-md bg-white/30 border border-white/20 rounded-2xl shadow-xl px-10 py-10 space-y-8"
+			@submit.prevent="onSubmit"
 		>
-			<FormItem>
-				<FormLabel
-					for="email"
-					class="block mb-2 font-semibold text-gray-700"
-				>
-					Adresse e-mail
-				</FormLabel>
+			<h2 class="text-3xl font-bold text-center text-white drop-shadow">
+				Espace Admin
+			</h2>
 
-				<FormControl>
-					<TheInput
-						id="email"
-						type="email"
-						placeholder="exemple@mail.com"
-						:model-value="value"
-						@update:model-value="setValue"
-						class="w-full"
-						required
-					/>
-				</FormControl>
+			<FormField
+				v-slot="{ value, setValue }"
+				name="email"
+			>
+				<FormItem>
+					<FormLabel class="block mb-1 font-semibold text-white drop-shadow">
+						Adresse e-mail
+					</FormLabel>
 
-				<FormMessage />
-			</FormItem>
-		</FormField>
+					<FormControl>
+						<TheInput
+							id="email"
+							type="email"
+							placeholder="exemple@mail.com"
+							:model-value="value"
+							@update:model-value="setValue"
+							class="w-full rounded-lg bg-white/80 text-gray-800 focus:ring-2 focus:ring-pink-400"
+							required
+						/>
+					</FormControl>
 
-		<FormField
-			v-slot="{ value, setValue }"
-			name="password"
-		>
-			<FormItem>
-				<FormLabel
-					for="password"
-					class="block mb-2 font-semibold text-gray-700"
-				>
-					Mot de passe
-				</FormLabel>
+					<FormMessage />
+				</FormItem>
+			</FormField>
 
-				<FormControl>
-					<TheInput
-						id="password"
-						type="password"
-						placeholder="••••••••"
-						:model-value="value"
-						@update:model-value="setValue"
-						class="w-full"
-						required
-					/>
-				</FormControl>
+			<FormField
+				v-slot="{ value, setValue }"
+				name="password"
+			>
+				<FormItem>
+					<FormLabel class="block mb-1 font-semibold text-white drop-shadow">
+						Mot de passe
+					</FormLabel>
 
-				<FormMessage />
-			</FormItem>
-		</FormField>
+					<FormControl>
+						<TheInput
+							id="password"
+							type="password"
+							placeholder="••••••••"
+							:model-value="value"
+							@update:model-value="setValue"
+							class="w-full rounded-lg bg-white/80 text-gray-800 focus:ring-2 focus:ring-pink-400"
+							required
+						/>
+					</FormControl>
 
-		<TheButton
-			type="submit"
-			class="w-full"
-		>
-			Se connecter
-		</TheButton>
-	</form>
+					<FormMessage />
+				</FormItem>
+			</FormField>
+
+			<TheButton
+				type="submit"
+				class="w-full bg-black hover:bg-gray-800 transition-all text-white font-semibold py-2 rounded-xl shadow-md"
+			>
+				Se connecter
+			</TheButton>
+		</form>
+	</div>
 </template>
 

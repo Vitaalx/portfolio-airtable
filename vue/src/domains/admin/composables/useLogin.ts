@@ -37,18 +37,18 @@ export function useLogin() {
 			"user.logged",
 			async(response) => {
 				setAccessToken(response.body);
-				sonnerMessage("Authentification avec succès ✅");
+				sonnerMessage("Authentification avec succès.");
 				await router.push({
 					name: routerPageNameAdmin.ADMIN_PROJECTS_PAGE,
 				});
 			},
 		).whenInformation(
 			"user.notfound",
-			() => sonnerError("Utilisation introuvable ❌"),
+			() => sonnerError("Utilisation introuvable."),
 		)
 			.whenInformation(
 				"user.invalid.password",
-				() => sonnerError("Mot de passe incorrect ❌"),
+				() => sonnerError("Mot de passe incorrect."),
 			)
 			.finally(() => {
 				setLoading(false);

@@ -13,13 +13,17 @@ export function cors(allowOrigin: string) {
 					"Access-Control-Expose-Headers",
 					instance.config.keyToInformationInHeaders,
 				);
+				response.setHeader(
+					"Access-Control-Allow-Methods",
+					"GET,POST,PATCH,OPTIONS",
+				);
 			},
 		);
 		instance.hook(
 			"beforeRouteExecution",
 			(request) => {
 				if (request.method === "OPTIONS") {
-					return new OkHttpResponse("cors").setHeader("Access-Control-Allow-Headers", "Authorization");
+					return new OkHttpResponse("cors.allowed").setHeader("Access-Control-Allow-Headers", "authorization,content-type");
 				}
 			},
 		);

@@ -5,7 +5,7 @@ import TheFooter from "@/components/TheFooter.vue";
 <template>
 	<TheHeader />
 
-	<main class="container mx-auto mt-16 p-4">
+	<main class="container min-h-screen">
 		<RouterView />
 	</main>
 

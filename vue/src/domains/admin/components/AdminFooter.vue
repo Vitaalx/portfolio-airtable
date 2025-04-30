@@ -2,8 +2,8 @@
 </script>
 <template>
 	<footer>
-		<div class="container mx-auto p-4">
-			<p class="text-center text-gray-500">
+		<div class="bg-black p-6">
+			<p class="text-center text-white">
 				&copy; {{ new Date().getFullYear() }} My Company. All rights reserved.
 			</p>
 		</div>

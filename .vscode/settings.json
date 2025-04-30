@@ -31,7 +31,7 @@
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"githubPullRequests.experimental.chat": true,
 	"github.copilot.enable": {
-		"*": false,
+		"*": true,
 		"plaintext": false,
 		"markdown": false,
 		"scminput": false

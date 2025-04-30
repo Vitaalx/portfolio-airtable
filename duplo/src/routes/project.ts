@@ -25,6 +25,8 @@ useMustBeConnectedBuilder()
 		async(pickup) => {
 			const { body, projectId } = pickup(["body", "projectId"]);
 
+			console.log("duplo called");
+
 			const airtableResponse = await AirtableAPI.updateProject(
 				projectId,
 				body.fields.status,
