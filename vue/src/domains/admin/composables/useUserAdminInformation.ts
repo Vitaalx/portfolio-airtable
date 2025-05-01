@@ -12,16 +12,15 @@ export function useUserAdminInformation() {
 
 	function deleteAccessToken() {
 		accessTokenItem.value = null;
+		localStorage.removeItem(accessTokenLocalStorageKey);
 	}
 
 	const isConnected = computed(() => !!accessTokenItem.value);
 
-	const accessToken = computed(() => accessTokenItem.value);
-
 	return {
 		setAccessToken,
+		accessTokenItem,
 		deleteAccessToken,
 		isConnected,
-		accessToken,
 	};
 }

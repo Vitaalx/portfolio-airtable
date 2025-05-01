@@ -1,7 +1,7 @@
 <script setup lang="ts">
 </script>
 <template>
-	<footer class="bg-gray-800 text-white py-4">
+	<footer class="bg-black text-white py-4">
 		<div class="container mx-auto text-center">
 			<p>&copy; {{ new Date().getFullYear() }} Portfolio - API Airtable. Tous droits réservés.</p>
 

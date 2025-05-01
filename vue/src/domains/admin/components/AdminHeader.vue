@@ -50,11 +50,14 @@ async function handleLogout() {
 			<div
 				class="flex items-center gap-2 w-[150px] justify-end"
 			>
-				<TheLink
+				<TheButton
 					v-if="!isConnected"
-					:to="ADMIN_LOGIN_PAGE"
-					label="Login"
-				/>
+					type="submit"
+					class="bg-black hover:bg-gray-800 transition-all text-white font-semibold py-2 rounded-xl shadow-md"
+					@click="$router.push(ADMIN_LOGIN_PAGE)"
+				>
+					Se connecter
+				</TheButton>
 
 				<TheButton
 					v-else

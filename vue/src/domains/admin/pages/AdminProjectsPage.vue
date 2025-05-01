@@ -85,10 +85,9 @@ async function toggleStatus(projectId: string, checked: boolean) {
 <template>
 	<section class="min-h-screen py-12 px-6">
 		<div class="max-w-7xl mx-auto">
-			<!-- En-tête -->
 			<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
 				<h1 class="text-3xl font-bold text-white">
-					Projets publiés ({{ projects.length }})
+					Projets ({{ projects.length }})
 				</h1>
 
 				<input
@@ -100,10 +99,9 @@ async function toggleStatus(projectId: string, checked: boolean) {
 				>
 			</div>
 
-			<!-- Table -->
 			<div
 				v-if="!isLoading"
-				class="overflow-x-auto bg-white/5 backdrop-blur-lg shadow-lg rounded-xl ring-1 ring-white/10"
+				class="overflow-x-auto bg-gray-900 shadow-lg rounded-xl ring-1 ring-white/10"
 			>
 				<table class="min-w-full divide-y divide-white/10">
 					<thead class="bg-white/10">
@@ -148,18 +146,22 @@ async function toggleStatus(projectId: string, checked: boolean) {
 								{{ project.summary.value }}
 							</td>
 
-							<td class="px-6 py-4 flex items-center gap-4">
+							<td class="px-6 py-4 flex gap-2">
+								<TheSwitch
+									:disabled="isLoading"
+									class="cursor-pointer transition-colors"
+									:model-value="project.status === 'Published'"
+									@update:model-value="(value: boolean) => toggleStatus(project.id, value)"
+									:class="project.status === 'Published'
+										? 'data-[state=checked]:bg-green-500'
+										: 'data-[state=unchecked]:bg-red-500'"
+								/>
+
 								<span
 									class="text-sm font-medium"
 								>
 									{{ project.status === 'Published' ? 'Publié' : 'Non publié' }}
 								</span>
-
-								<TheSwitch
-									:disabled="isLoading"
-									:model-value="project.status === 'Published'"
-									@update:model-value="(value: boolean) => toggleStatus(project.id, value)"
-								/>
 							</td>
 						</tr>
 					</tbody>

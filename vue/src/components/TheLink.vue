@@ -6,12 +6,11 @@ interface LinkProps {
 
 const props = defineProps<LinkProps>();
 
-console.log("TheLink", props.to, props.label);
 </script>
 <template>
 	<RouterLink
 		:to="{ name: props.to }"
-		class="font-semibold text-white hover:text-blue-500 transition"
+		class="font-semibold hover:text-blue-500 transition"
 	>
 		{{ props.label }}
 	</RouterLink>

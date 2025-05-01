@@ -22,8 +22,12 @@ export function useLocalStorageItem<
 			itemRef,
 			watch(
 				itemRef,
-				(value: string) => {
+				(value) => {
 					localStorage.setItem(key, value);
+				},
+				{
+					deep: true,
+					immediate: true,
 				},
 			),
 		);
