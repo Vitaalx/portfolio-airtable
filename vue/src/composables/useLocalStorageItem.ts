@@ -27,7 +27,6 @@ export function useLocalStorageItem<
 				},
 				{
 					deep: true,
-					immediate: true,
 				},
 			),
 		);

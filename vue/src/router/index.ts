@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import project from "@/domains/project/router";
+import project, { routerPageNameMain } from "@/domains/project/router";
 import admin, { routerPageNameAdmin } from "@/domains/admin/router";
 import { useUserAdminInformation } from "@/domains/admin/composables/useUserAdminInformation";
 import { notFound } from "@/domains/edito/router";
@@ -23,7 +23,7 @@ router.beforeEach((to, _from, next) => {
 	const isLoginPage = to.name === routerPageNameAdmin.ADMIN_LOGIN_PAGE;
 
 	if (to.fullPath === "/") {
-		return void next();
+		return void next({ name: routerPageNameMain.HOME_PAGE });
 	}
 
 	if (to.fullPath === "/admin-panel" && isConnected.value) {

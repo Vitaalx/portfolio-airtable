@@ -25,7 +25,6 @@ const {
 		}),
 		nbLikes: z.number(),
 		studentNames: z.array(z.string()),
-		likes: z.string().array().nullable(),
 	},
 	{
 		status: "Published",

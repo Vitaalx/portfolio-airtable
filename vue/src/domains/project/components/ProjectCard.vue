@@ -3,7 +3,8 @@ import { TheCard, CardContent, CardDescription, CardFooter, CardHeader, CardTitl
 import { TheBadge } from "@/components/ui/badge";
 import { envs } from "@/envs";
 import { useSonner } from "@/composables/useSonner";
-import { useLocalStorageItem } from "@/composables/useLocalStorageItem";
+import { useLikeItemLocalStorage } from "../composables/useLikeItemLocalStorage";
+import { z } from "zod";
 
 interface ProjectCard {
 	id: string;
@@ -16,7 +17,6 @@ interface ProjectCard {
 	summary: {
 		value: string;
 	};
-	likes: string[] | null;
 	status: "Published" | "Unpublished";
 	technologyNames: string[];
 	keywords: {
@@ -28,21 +28,26 @@ interface ProjectCardProps {
 	project: ProjectCard;
 }
 
+const postLikePayloadSchema = z.object({
+	id: z.string(),
+});
+
 const props = defineProps<ProjectCardProps>();
 const emit = defineEmits<(e: "on-liked") => void>();
 
 const { sonnerMessage } = useSonner();
 
-const likeKey = `like-${props.project.id}`;
-const likeIdKey = `like-id-${props.project.id}`;
-
-const isLiked = useLocalStorageItem<boolean>(likeKey);
-const likeId = useLocalStorageItem<string | null>(likeIdKey);
+const {
+	setLikeItem,
+	deleteLikeItem,
+	isLikedComputedValue,
+	likeIdItem,
+} = useLikeItemLocalStorage(props.project.id);
 
 async function addLike() {
-	if (isLiked.value && likeId.value) {
+	if (isLikedComputedValue.value && likeIdItem.value) {
 		await fetch(
-			`${envs.VITE_AIRTABLE_BASE_URL}Like?records[]=${likeId.value}`,
+			`${envs.VITE_AIRTABLE_BASE_URL}Like?records[]=${likeIdItem.value}`,
 			{
 				method: "DELETE",
 				headers: {
@@ -50,10 +55,20 @@ async function addLike() {
 					Authorization: `Bearer ${envs.VITE_AIRTABLE_API_KEY}`,
 				},
 			},
+		).then(
+			(response) => {
+				if (!response.ok) {
+					sonnerMessage("Erreur lors de la suppression du like !");
+					return;
+				}
+				return response.json();
+			},
+		).then(
+			() => {
+				void deleteLikeItem();
+				sonnerMessage("Vous avez retiré votre like !");
+			},
 		);
-		isLiked.value = false;
-		likeId.value = null;
-		sonnerMessage("Vous avez retiré votre like !");
 	} else {
 		await fetch(
 			`${envs.VITE_AIRTABLE_BASE_URL}Like`,
@@ -70,12 +85,31 @@ async function addLike() {
 				}),
 			},
 		)
-			.then((response) => response.json())
-			.then((json) => {
-				isLiked.value = true;
-				likeId.value = json.id;
-			});
-		sonnerMessage("Vous avez aimé le projet !");
+			.then(
+				(response) => {
+					if (!response.ok) {
+						sonnerMessage("Erreur lors de l'ajout du like !");
+						return;
+					}
+					return response.json();
+				},
+			)
+			.then(
+				(json) => {
+					const {
+						success,
+						data: like,
+						error,
+					} = postLikePayloadSchema.safeParse(json);
+
+					if (!success) {
+						throw new Error(error.errors.shift()!.message);
+					}
+
+					setLikeItem(like.id);
+					sonnerMessage("Vous avez aimé le projet !");
+				},
+			);
 	}
 	emit("on-liked");
 }
@@ -139,7 +173,7 @@ async function addLike() {
 				<button
 					@click="addLike"
 					class="flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full border transition duration-200 cursor-pointer"
-					:class="isLiked ? 'bg-red-400 text-white border-transparent shadow' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'"
+					:class="isLikedComputedValue ? 'bg-gray-800 text-white border-transparent shadow' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-300'"
 				>
 					<span>{{ props.project.nbLikes }}</span>
 
