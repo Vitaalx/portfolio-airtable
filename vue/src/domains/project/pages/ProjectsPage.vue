@@ -73,7 +73,6 @@ function handleSearch() {
 					:key="project.id"
 					:project="project"
 					class="mb-4"
-					@on-liked="getProjects"
 				/>
 			</div>
 		</template>

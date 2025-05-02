@@ -5,20 +5,20 @@ export function useLikeItemLocalStorage(projectId: string) {
 	const likeKey = `like-${projectId}`;
 	const likeIdKey = `like-id-${projectId}`;
 
-	const isLikedItem = useLocalStorageItem<string>(likeKey);
+	const isLikedItem = useLocalStorageItem<boolean>(likeKey);
 	const likeIdItem = useLocalStorageItem<string>(likeIdKey);
 
 	function setLikeItem(likeId: string) {
-		isLikedItem.value = "true";
+		isLikedItem.value = true;
 		likeIdItem.value = likeId;
 	}
 
 	function deleteLikeItem() {
-		isLikedItem.value = "false";
-		likeIdItem.value = "";
+		isLikedItem.value = false;
+		likeIdItem.value = null;
 	}
 
-	const isLikedComputedValue = computed(() => likeIdItem.value!);
+	const isLikedComputedValue = computed(() => !!likeIdItem.value);
 
 	return {
 		setLikeItem,

@@ -5,6 +5,7 @@ import { envs } from "@/envs";
 import { useSonner } from "@/composables/useSonner";
 import { useLikeItemLocalStorage } from "../composables/useLikeItemLocalStorage";
 import { z } from "zod";
+import { ref } from "vue";
 
 interface ProjectCard {
 	id: string;
@@ -33,7 +34,8 @@ const postLikePayloadSchema = z.object({
 });
 
 const props = defineProps<ProjectCardProps>();
-const emit = defineEmits<(e: "on-liked") => void>();
+
+const likesNumber = ref(props.project.nbLikes);
 
 const { sonnerMessage } = useSonner();
 
@@ -67,6 +69,7 @@ async function addLike() {
 			() => {
 				void deleteLikeItem();
 				sonnerMessage("Vous avez retiré votre like !");
+				likesNumber.value -= 1;
 			},
 		);
 	} else {
@@ -108,10 +111,10 @@ async function addLike() {
 
 					setLikeItem(like.id);
 					sonnerMessage("Vous avez aimé le projet !");
+					likesNumber.value += 1;
 				},
 			);
 	}
-	emit("on-liked");
 }
 </script>
 <template>
@@ -175,7 +178,7 @@ async function addLike() {
 					class="flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full border transition duration-200 cursor-pointer"
 					:class="isLikedComputedValue ? 'bg-gray-800 text-white border-transparent shadow' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-300'"
 				>
-					<span>{{ props.project.nbLikes }}</span>
+					<span>{{ likesNumber }}</span>
 
 					<span>❤️</span>
 				</button>
